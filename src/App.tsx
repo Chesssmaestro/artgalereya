@@ -4,6 +4,7 @@ import { translations, Language, Work } from './data';
 function App() {
   const [lang, setLang] = useState<Language>('uz');
   const t = translations[lang];
+
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-20 min-w-[1024px]">
       {/* Language Switcher */}
@@ -20,6 +21,7 @@ function App() {
           </button>
         ))}
       </div>
+
       <div className="max-w-4xl mx-auto pt-20 px-4 space-y-12">
 
         {/* Page 1: Cover */}
@@ -39,26 +41,31 @@ function App() {
         {/* Page 2: Works Part 1 */}
         <section className="bg-white shadow-md p-12 w-full text-gray-900">
           <p className="text-lg mb-12">{t.worksIntro}</p>
+
           <WorkRow work={t.works.invisible} />
           <WorkRow work={t.works.signals} tall />
-          <div className="grid grid-cols-4 gap-6 mb-16">
+
+          <div className="grid grid-cols-4 gap-6 mb-16 items-end">
             <WorkGridItem work={t.works.excavation} />
             <WorkGridItem work={t.works.meadow} />
-            <WorkGridItem work={t.works.ballet} />
-            <WorkGridItem work={t.works.snowballs} />
+            <WorkGridItem work={t.works.ballet} tall />
+            <WorkGridItem work={t.works.snowballs} tall />
           </div>
+
           <WorkRow work={t.works.boat} />
         </section>
 
         {/* Page 3: Works Part 2 */}
         <section className="bg-white shadow-md p-12 w-full text-gray-900">
           <WorkRow work={t.works.garden} />
-          <div className="grid grid-cols-4 gap-6 mb-16">
+
+          <div className="grid grid-cols-4 gap-6 mb-16 items-end">
             <WorkGridItem work={t.works.marionettes1} />
             <WorkGridItem work={t.works.marionettes2} />
-            <WorkGridItem work={t.works.balance} />
-            <WorkGridItem work={t.works.pendulum} />
+            <WorkGridItem work={t.works.balance} tall />
+            <WorkGridItem work={t.works.pendulum} tall />
           </div>
+
           <WorkRow work={t.works.delivery} />
           <WorkRow work={t.works.dice} tall />
         </section>
@@ -131,11 +138,11 @@ function WorkRow({ work, tall = false }: { work: Work, tall?: boolean }) {
   );
 }
 
-function WorkGridItem({ work }: { work: Work }) {
+function WorkGridItem({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
     <div className="flex flex-col">
-      <WorkImage work={work} />
+      <WorkImage work={work} tall={tall} />
       <h3 className="uppercase italic font-bold mt-3 tracking-wide text-sm leading-tight">{work.title}</h3>
       <p className="text-xs text-gray-700 mt-1">{work.meta}</p>
     </div>
