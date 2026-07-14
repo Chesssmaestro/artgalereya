@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Language, translations, Work } from './data';
+import { translations, Language, Work } from './data';
 
 function App() {
   const [lang, setLang] = useState<Language>('uz');
@@ -27,12 +27,12 @@ function App() {
         {/* Page 1: Cover */}
         <section className="bg-white shadow-md overflow-hidden w-full">
           <img
-            src={`/cover-${lang}.jpg`}
+            src={`/cover-${lang}.png`}
             alt="Cover"
             className="w-full h-auto block"
             onError={(e) => {
-              if (!e.currentTarget.src.endsWith('cover-uz.jpg')) {
-                e.currentTarget.src = '/cover-uz.jpg';
+              if (!e.currentTarget.src.endsWith('cover-uz.png')) {
+                e.currentTarget.src = '/cover-uz.png';
               }
             }}
           />
