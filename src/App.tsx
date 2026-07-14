@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { translations, Language, Work } from './data';
+import { Language, translations, Work } from './data';
 
 function App() {
   const [lang, setLang] = useState<Language>('uz');
   const t = translations[lang];
-  const baseUrl = import.meta.env.BASE_URL;
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-20 min-w-[1024px]">
@@ -37,24 +36,6 @@ function App() {
               }
             }}
           />
-        </section>
-            {/* The actual image would go here. We use a stylized placeholder for now. */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#102B45] to-[#1A3A5A] opacity-90 mix-blend-multiply pointer-events-none"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-               {/* Decorative background to simulate the complex 3D cover image */}
-               <svg viewBox="0 0 100 100" className="w-full h-full fill-current text-white"><path d="M0,0 L100,100 M100,0 L0,100 M50,0 L50,100 M0,50 L100,50" stroke="currentColor" strokeWidth="0.5"/></svg>
-            </div>
-
-            <div className="absolute top-10 right-12 text-white text-5xl italic font-light tracking-wide z-10">
-              {t.dates}
-            </div>
-          </div>
-
-          {/* Bottom White Area */}
-          <div className="bg-white px-12 py-16 flex flex-col justify-center border-t border-gray-100">
-            <h1 className="text-7xl italic font-light tracking-wide text-gray-900 mb-4">{t.title}</h1>
-            <h2 className="text-4xl italic font-light tracking-widest text-gray-800 whitespace-pre-line">{t.artist}</h2>
-          </div>
         </section>
 
         {/* Page 2: Works Part 1 */}
@@ -96,7 +77,7 @@ function App() {
             <div className="w-1/3 shrink-0">
                <div className="w-full bg-gray-200 border border-gray-300 relative overflow-hidden group aspect-[4/3]">
                   <img
-                    src={`${baseUrl}artist.jpg`}
+                    src="/artist.jpg"
                     alt="Artist"
                     className="absolute inset-0 w-full h-full object-cover"
                     onError={(e) => {
@@ -132,12 +113,14 @@ function App() {
              </div>
           </div>
         </section>
+
       </div>
     </div>
   );
 }
 
 // Subcomponents for the specific layout structures
+
 function WorkRow({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
@@ -168,11 +151,10 @@ function WorkGridItem({ work }: { work: Work }) {
 }
 
 function WorkImage({ work, tall = false }: { work: Work, tall?: boolean }) {
-  const baseUrl = import.meta.env.BASE_URL;
   return (
     <div className={`w-full bg-slate-200 border border-slate-300 relative overflow-hidden group ${tall ? 'aspect-[1/2]' : 'aspect-video'}`}>
       <img
-        src={`${baseUrl}${work.imgKey}.jpg`}
+        src={`/${work.imgKey}.jpg`}
         alt={work.title}
         className="absolute inset-0 w-full h-full object-cover object-center"
         onError={(e) => {
