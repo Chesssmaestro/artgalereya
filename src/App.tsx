@@ -4,7 +4,6 @@ import { translations, Language, Work } from './data';
 function App() {
   const [lang, setLang] = useState<Language>('uz');
   const t = translations[lang];
-
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-20 min-w-[1024px]">
       {/* Language Switcher */}
@@ -21,7 +20,6 @@ function App() {
           </button>
         ))}
       </div>
-
       <div className="max-w-4xl mx-auto pt-20 px-4 space-y-12">
 
         {/* Page 1: Cover */}
@@ -41,31 +39,26 @@ function App() {
         {/* Page 2: Works Part 1 */}
         <section className="bg-white shadow-md p-12 w-full text-gray-900">
           <p className="text-lg mb-12">{t.worksIntro}</p>
-
           <WorkRow work={t.works.invisible} />
           <WorkRow work={t.works.signals} tall />
-
           <div className="grid grid-cols-4 gap-6 mb-16">
             <WorkGridItem work={t.works.excavation} />
             <WorkGridItem work={t.works.meadow} />
             <WorkGridItem work={t.works.ballet} />
             <WorkGridItem work={t.works.snowballs} />
           </div>
-
           <WorkRow work={t.works.boat} />
         </section>
 
         {/* Page 3: Works Part 2 */}
         <section className="bg-white shadow-md p-12 w-full text-gray-900">
           <WorkRow work={t.works.garden} />
-
           <div className="grid grid-cols-4 gap-6 mb-16">
             <WorkGridItem work={t.works.marionettes1} />
             <WorkGridItem work={t.works.marionettes2} />
             <WorkGridItem work={t.works.balance} />
             <WorkGridItem work={t.works.pendulum} />
           </div>
-
           <WorkRow work={t.works.delivery} />
           <WorkRow work={t.works.dice} tall />
         </section>
@@ -75,7 +68,7 @@ function App() {
           <div className="flex flex-row gap-12 mb-16">
             {/* Artist Photo */}
             <div className="w-1/3 shrink-0">
-               <div className="w-full bg-transparent border border-gray-300 relative overflow-hidden group aspect-[4/3]">
+               <div className="w-full bg-transparent relative overflow-hidden group aspect-[4/3]">
                   <img
                     src="/artist.jpg"
                     alt="Artist"
@@ -113,13 +106,13 @@ function App() {
              </div>
           </div>
         </section>
-
       </div>
     </div>
   );
 }
 
 // Subcomponents for the specific layout structures
+
 function WorkRow({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
@@ -152,7 +145,7 @@ function WorkGridItem({ work }: { work: Work }) {
 function WorkImage({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
-    <div className={`w-full bg-transparent border border-slate-300 relative overflow-hidden group ${tall ? 'aspect-[1/2]' : 'aspect-video'}`}>
+    <div className={`w-full bg-transparent relative overflow-hidden group ${tall ? 'aspect-[1/2]' : 'aspect-video'}`}>
       <img
         src={`/${work.imgKey}.jpg`}
         alt={work.title}
