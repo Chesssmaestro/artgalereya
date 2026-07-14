@@ -113,6 +113,7 @@ function App() {
              </div>
           </div>
         </section>
+
       </div>
     </div>
   );
@@ -141,8 +142,10 @@ function WorkRow({ work, tall = false }: { work: Work, tall?: boolean }) {
 function WorkGridItem({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
-    <div className="flex flex-col">
-      <WorkImage work={work} tall={tall} />
+    <div className="flex flex-col justify-end h-full">
+      <div className={tall ? "w-[55%]" : "w-full"}>
+        <WorkImage work={work} tall={tall} />
+      </div>
       <h3 className="uppercase italic font-bold mt-3 tracking-wide text-sm leading-tight">{work.title}</h3>
       <p className="text-xs text-gray-700 mt-1">{work.meta}</p>
     </div>
