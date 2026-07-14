@@ -26,17 +26,18 @@ function App() {
       <div className="max-w-4xl mx-auto pt-20 px-4 space-y-12">
 
         {/* Page 1: Cover */}
-        <section className="bg-white shadow-md overflow-hidden flex flex-col w-full min-h-[800px]">
-          {/* Top Blue Area with Background Image Placeholder */}
-          <div className="flex-1 bg-[#1A3A5A] relative flex items-center justify-center p-8 overflow-hidden min-h-[500px]">
-            <img
-              src={`${baseUrl}cover-${lang}.jpg`}
-              alt="Cover"
-              className="absolute inset-0 w-full h-full object-cover opacity-90"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+        <section className="bg-white shadow-md overflow-hidden w-full">
+          <img
+            src={`/cover-${lang}.jpg`}
+            alt="Cover"
+            className="w-full h-auto block"
+            onError={(e) => {
+              if (!e.currentTarget.src.endsWith('cover-uz.jpg')) {
+                e.currentTarget.src = '/cover-uz.jpg';
+              }
+            }}
+          />
+        </section>
             {/* The actual image would go here. We use a stylized placeholder for now. */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#102B45] to-[#1A3A5A] opacity-90 mix-blend-multiply pointer-events-none"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
