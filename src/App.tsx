@@ -4,6 +4,7 @@ import { translations, Language, Work } from './data';
 function App() {
   const [lang, setLang] = useState<Language>('uz');
   const t = translations[lang];
+  const baseUrl = import.meta.env.BASE_URL;
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-20 min-w-[1024px]">
@@ -29,7 +30,7 @@ function App() {
           {/* Top Blue Area with Background Image Placeholder */}
           <div className="flex-1 bg-[#1A3A5A] relative flex items-center justify-center p-8 overflow-hidden min-h-[500px]">
             <img
-              src={`/cover-${lang}.jpg`}
+              src={`${baseUrl}cover-${lang}.jpg`}
               alt="Cover"
               className="absolute inset-0 w-full h-full object-cover opacity-90"
               onError={(e) => {
@@ -94,7 +95,7 @@ function App() {
             <div className="w-1/3 shrink-0">
                <div className="w-full bg-gray-200 border border-gray-300 relative overflow-hidden group aspect-[4/3]">
                   <img
-                    src="/artist.jpg"
+                    src={`${baseUrl}artist.jpg`}
                     alt="Artist"
                     className="absolute inset-0 w-full h-full object-cover"
                     onError={(e) => {
@@ -130,14 +131,12 @@ function App() {
              </div>
           </div>
         </section>
-
       </div>
     </div>
   );
 }
 
 // Subcomponents for the specific layout structures
-
 function WorkRow({ work, tall = false }: { work: Work, tall?: boolean }) {
   if (!work) return null;
   return (
@@ -168,10 +167,11 @@ function WorkGridItem({ work }: { work: Work }) {
 }
 
 function WorkImage({ work, tall = false }: { work: Work, tall?: boolean }) {
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     <div className={`w-full bg-slate-200 border border-slate-300 relative overflow-hidden group ${tall ? 'aspect-[1/2]' : 'aspect-video'}`}>
       <img
-        src={`/${work.imgKey}.jpg`}
+        src={`${baseUrl}${work.imgKey}.jpg`}
         alt={work.title}
         className="absolute inset-0 w-full h-full object-cover object-center"
         onError={(e) => {
